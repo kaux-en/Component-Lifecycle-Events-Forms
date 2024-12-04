@@ -6,7 +6,7 @@ const CharacterDetail = () => {
     const [characters, setCharacters] = useState([]);
     const [selectedCharacter, setSelectedCharacter] = useState(null);
     const [characterDetails, setCharacterDetails] = useState({
-        description: " ",
+        description: '',
         comics: []
     })
 
@@ -24,14 +24,12 @@ const CharacterDetail = () => {
      }, []); 
 
     
-
-    if (selectedCharacter) {
         useEffect(() => {
             const fetchcharacterDetails = async () => {
                 try {  
                     const url = `https://gateway.marvel.com/v1/public/characters/${selectedCharacter.id}?ts=${ts}&apikey=${apiKey}&hash=${hash}`
                     const response = await axios.get(url)
-                    console.log(response.data)
+                    console.log(response.data.data)
                     const { description, comics } = response.data.data.results[0];  
                     setCharacterDetails({ description, comics: comics.items }); 
 
@@ -40,33 +38,31 @@ const CharacterDetail = () => {
                 }
             }; fetchcharacterDetails()
         }, [selectedCharacter]);
-    };
+     
     
-        const handleButton = (index) => {  
-            setSelectedCharacter(index)  
+    
+        const handleButton = (character) => {  
+            setSelectedCharacter(character)     
         };  
        
     
     return (
         <div>
+            <h1>Character List</h1>
             <ul>
-            {characters.map((character, index) => (  
-             <li key={index}>{character} - <button onClick={() => handleButton(index)}>See Details</button></li>
-            ))}</ul>
+            {characters.map((character) => (  
+             <li key={character.id}>{character.name} - <button onClick={() => handleButton(character)}>See Details</button></li>
+            ))}
+            {characterDetails &&
+                <div>
+                    {characterDetails.description}
+                    {characterDetails.comics.items}
+                </div>}</ul>   
+                
 
-            {selectedCharacter &&
-            <div>
-            <h1>Character Details</h1>,
-            <p>Description: {[characterDetails.description]}</p>,
-            <p>Comics:</p>
-            <ul>  
-                {characterDetails.comics.map((comic, index) => (  
-                   <li key={index}>{comic.name}</li>  
-                ))} 
-            </ul>
-            </div> };
-        </div>
-    );  
-};
+        </div>   
+    ); 
+}
+
 
 export default CharacterDetail;
