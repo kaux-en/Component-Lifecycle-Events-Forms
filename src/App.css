@@ -1,3 +1,49 @@
 li {
+  padding: 10px;
+}
+
+.details {
   padding: 5px;
+  text-decoration: none;
+  color: blue;
+}
+
+.details:hover {
+  color: rgb(5, 113, 167);
+}
+
+.characterdetails {
+  padding-top: 20px;
+}
+
+.nav-link {
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+.active {
+  text-decoration: none;
+}
+
+nav {
+  padding-top: 10px;
+}
+
+/*
+.nav-link:link {
+  color: darkorange;
+}
+  */
+  
+
+.nav-link:visited {
+  color: darkblue;
+}
+
+.nav-link:hover {
+  color: rgb(167, 213, 30);
+}
+/*
+.nav-link:active {
+  color: darkred;
 }
