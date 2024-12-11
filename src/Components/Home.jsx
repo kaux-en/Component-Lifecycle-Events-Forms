@@ -39,7 +39,7 @@ const Home = () => {
                             <Card.Text>
                                 Check out the comics associated with your favorite marvel character!
                             </Card.Text>
-                                <Button variant="primary">Comics</Button>
+                                <Button variant="primary" onClick={() => navigate('/NotFound')}>Comics</Button>
                     </Card.Body>
             </Card>
         </div>
